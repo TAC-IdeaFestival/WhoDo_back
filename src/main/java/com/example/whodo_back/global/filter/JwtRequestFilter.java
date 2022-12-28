@@ -1,11 +1,13 @@
 package com.example.whodo_back.global.filter;
 
+import com.example.whodo_back.domain.user.exception.exceptionCollection.BlackListAlreadyExistException;
 import com.example.whodo_back.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -15,7 +17,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class JwtRequestFilter {
+public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtProvider jwtProvider;
     private final RedisTemplate redisTemplate;
 

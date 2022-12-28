@@ -15,9 +15,6 @@ spring:
         format_sql: true
         user_sql_comments: true
 
-  profiles:
-    include: jwt
-
 logging:
   level:
     org:
@@ -27,14 +24,10 @@ logging:
       hibernate:
         SQL: debug
 
-    boardexample:
-      myboard: info
-
   jwt:
-    header: Authorization
-    secret: {and0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdpLWp3dC10ZXN0LWFsamphYmFlZ2ktand0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdpLWp3dC10ZXN0LWFsamphYmFlZ2ktand0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdp}
-    token-validity-in-seconds: 86400
+    accessSecret: 9GXylw8hX4uQHA738I8jfuQ3wFouDkKvl9hFFCAuTJ4=
+    refreshSecret: JPtwLfIKu1l5JZ+BiEFaSHQXWs1EMX1E3FpP1uJ6C0o=
 
   redis:
-    host: localhost
+    host: 127.0.0.1
     port: 6379
