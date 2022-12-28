@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class WhoDoBackApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(WhoDoBackApplication.class, args);
     }
