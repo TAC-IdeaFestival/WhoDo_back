@@ -17,20 +17,19 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
-
     @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@Valid @RequestBody SignUpRequest signupRequest) {
         userService.signUp(signupRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/signin")
     public ResponseEntity<SignInResponse> signIn(@Valid @RequestBody SignInRequest signinRequest) {
         SignInResponse data = userService.signIn(signinRequest);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/logout")
     public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
         userService.logout(accessToken);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

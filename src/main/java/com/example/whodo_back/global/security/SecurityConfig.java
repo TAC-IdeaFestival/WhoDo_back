@@ -20,8 +20,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
-public class SecurityConfig  {
-    private final JwtRequestFilter  jwtRequestFilter;
+public class SecurityConfig {
+    private final JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
@@ -34,8 +34,9 @@ public class SecurityConfig  {
 
         httpSecurity
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth/signup", "/auth").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/signin").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/auth/logout").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
