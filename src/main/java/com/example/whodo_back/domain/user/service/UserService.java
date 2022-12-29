@@ -54,6 +54,7 @@ public class UserService {
         if(!passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())){
             throw new WrongPasswordException("비밀번호가 올바르지 않습니다");
         }
+
         String accessToken = jwtProvider.generatedAccessToken(signinRequest.getEmail());
         String refreshToken = jwtProvider.generatedRefreshToken(signinRequest.getEmail());
         RefreshToken entityToRedis = new RefreshToken(signinRequest.getEmail(), refreshToken, jwtProvider.getREFRESH_TOKEN_EXPIRE_TIME());
@@ -63,6 +64,7 @@ public class UserService {
                 .refreshToken(refreshToken)
                 .expiredAt(jwtProvider.getExpiredAtToken())
                 .build();
+
     }
 
     @Transactional(rollbackFor = Exception.class)

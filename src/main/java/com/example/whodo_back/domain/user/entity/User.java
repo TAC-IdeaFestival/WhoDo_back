@@ -5,14 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
-@Table(name = "member")
+@Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,4 +25,12 @@ public class User {
 
     @Column(nullable = false)
     private Integer classNum;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @PrePersist
+    public void prePersist(){
+        this.role = this.role == null ? Role.STUDENT : Role.TEACHER;
+    }
 }
