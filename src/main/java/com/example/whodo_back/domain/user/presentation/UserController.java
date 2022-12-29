@@ -23,13 +23,13 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/signin")
     public ResponseEntity<SignInResponse> signIn(@Valid @RequestBody SignInRequest signinRequest) {
         SignInResponse data = userService.signIn(signinRequest);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/logout")
     public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
         userService.logout(accessToken);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
